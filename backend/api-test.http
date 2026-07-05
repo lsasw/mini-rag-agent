@@ -1,0 +1,20 @@
+### 健康检查
+GET http://127.0.0.1:8000/api/health
+
+### 问答
+POST http://127.0.0.1:8000/api/chat
+Content-Type: application/json
+
+{"message": "RAG 的核心流程是什么？"}
+
+### 上传文档
+POST http://127.0.0.1:8000/api/documents/upload
+Content-Type: multipart/form-data; boundary=----boundary
+
+------boundary
+Content-Disposition: form-data; name="file"; filename="test.md"
+Content-Type: text/markdown
+
+# 测试文档
+这是测试内容
+------boundary--
