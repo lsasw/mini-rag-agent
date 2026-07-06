@@ -27,3 +27,28 @@ backend = "backend:main"
 [build-system]
 requires = ["uv_build>=0.8.13,<0.9.0"]
 build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "pytest-asyncio>=1.4.0",
+]
+
+# ---- pytest 配置 ----
+# 运行方式：cd backend && uv run pytest -v
+
+[tool.pytest.ini_options]
+# 测试文件发现模式
+python_files = "test_*.py"
+python_classes = "Test*"
+python_functions = "test_*"
+
+# 测试路径：src 目录下的 tests 文件夹
+testpaths = ["src/tests"]
+
+# 异步支持（FastAPI TestClient 的异步路由需要）
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+
+# 输出选项
+addopts = ["-v", "--tb=short", "--strict-markers"]
